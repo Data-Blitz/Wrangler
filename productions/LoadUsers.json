@@ -1,0 +1,196 @@
+{
+  "productions": [
+    {
+      "logger": {
+        "loggerImpl": "./loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          },
+          "filename":"/Users/paul/clients/bpf-data-blitz-wrangler/WranglerLog.json"
+        }
+      },
+
+
+      "source": {
+        "name": "CsvBatchTupleStream",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "filename": "/Users/paul/data/together-data/vwPlatformUsers000.csv",
+          "columnNames":["userid","creationdatetime","identityid","birthdate",
+            "gender","relationshipstatus","residentstateus","initiallogindate","ethnicitywritein","faith","zipcode","email"],
+          "batchSize": 1000,
+          "maxNumberOfOutstandingBatches": 20,
+          "backPressureWaitInMilliseconds": 3
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "AdjustTimestampFormat",
+          "wranglerImpl": "./wranglers/AdjustTimestampFormat.js",
+          "configuration": {
+            "timestampsToAdjust": [
+              {
+                "sourceAttributeName": "initiallogindate",
+                "format": "ISO",
+                "adjustedAttributeName": "initiallogindate-ISO"
+              },
+              {
+                "sourceAttributeName": "creationdatetime",
+                "format": "ISO",
+                "adjustedAttributeName": "creationdatetime-ISO"
+              },
+              {
+                "sourceAttributeName": "birthdate",
+                "format": "ISO",
+                "adjustedAttributeName": "birthdate-ISO"
+              }
+            ]
+          }
+        },
+        {
+          "name": "AddAge",
+          "wranglerImpl": "./wranglers/AddAge.js",
+          "configuration": {
+            "dobAttributeName": "birthdate-ISO",
+            "ageAttributeName": "age",
+            "generations": [
+              {
+                "from":14,
+                "to":23,
+                "generation":"generationZ"
+              },
+              {
+                "from":24,
+                "to":35,
+                "generation":"millennial"
+              },
+              {
+                "from":36,
+                "to":53,
+                "generation":"generationX"
+              },
+              {
+                "from":54,
+                "to":75,
+                "generation":"babyBoomers"
+              },
+              {
+                "from":76,
+                "to":93,
+                "generation":"silentGeneration"
+              }
+
+            ]
+
+          }
+        },
+        {
+          "name": "AddTimestamp",
+          "wranglerImpl": "./wranglers/AddTimestamp.js",
+          "configuration": {
+            "timestampAttributeName": "timestamp-ISO",
+            "format": "ISO"
+          }
+        },
+        {
+          "name": "MergeUserAttributes",
+          "wranglerImpl": "./wranglers/MergeAttributeContent.js",
+          "configuration": {
+            "referenceIndex": "together-user-attributes",
+            "referenceType": "attribute",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "attributes"
+          }
+        },
+
+        {
+          "name": "MergeUserEthnicity",
+          "wranglerImpl": "./wranglers/MergeUserEthnicityContent.js",
+          "configuration": {
+            "referenceIndex": "together-user-ethnicity",
+            "referenceType": "attribute",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "user-ethnicity"
+          }
+        },
+
+        {
+          "name": "MergeCalculatedEthnicity",
+          "wranglerImpl": "./wranglers/MergeCalculatedEthnicityContent.js",
+          "configuration": {
+            "referenceIndex": "together-calculated-ethnicity",
+            "referenceType": "attribute",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "calculated-ethnicity"
+          }
+        },
+
+        {
+          "name": "/MergeUserAssessmentContent",
+          "wranglerImpl": "./wranglers/MergeUserAssessmentContent.js",
+          "configuration": {
+            "referenceIndex": "together-user-assessments",
+            "referenceType": "attribute",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "user-assessments"
+          }
+        },
+
+        {
+          "name": "/MergeCardHierarchy",
+          "wranglerImpl": "./wranglers/MergeCardHierarchyContent.js",
+          "configuration": {
+            "referenceIndex": "together-card-hierarchy",
+            "referenceType": "attribute",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "card-hierarchy"
+          }
+        },
+        {
+          "name": "/MergeAssessents",
+          "wranglerImpl": "./wranglers/MergeAssessentsContent.js",
+          "configuration": {
+            "referenceIndex": "together-assessments",
+            "sinkType": "assessment",
+            "referenceType": "assessment",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "assessments"
+          }
+        },
+        {
+          "name": "AddPersona",
+          "wranglerImpl": "./wranglers/AddPersona.js",
+          "configuration": {
+            "host": "localhost:9200",
+            "personaIndex": "together-personas",
+            "personaType": "persona"
+          }
+        }
+      ],
+      "sink": {
+        "name": "ElasticSearch",
+        "sinkImpl": "./sinks/ElasticSearchSink.js",
+        "configuration": {
+          "host": "localhost:9200",
+          "sinkIndex": "together-usersb",
+          "sinkType": "user",
+          "_idAttributeName": "userid",
+          "bulkAction": "index"
+        }
+      }
+    }
+  ]
+}

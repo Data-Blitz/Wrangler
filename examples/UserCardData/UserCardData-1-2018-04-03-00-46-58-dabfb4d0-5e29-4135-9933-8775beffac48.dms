@@ -1,0 +1,1 @@
+{"Keys":{"cardId":{"S":"assessment-101"},"userId":{"S":"7c05e732-8733-4d72-975f-a5a07edf74a5"}},"NewImage":{"hidden":{"BOOL":false},"cardId":{"S":"assessment-101"},"progress":{"S":"FEEDBACK_REQUIRED"},"userId":{"S":"7c05e732-8733-4d72-975f-a5a07edf74a5"}},"SequenceNumber":"1461853300000000044400298648","SizeBytes":156,"ApproximateCreationDateTime":1522716360,"eventName":"INSERT"}

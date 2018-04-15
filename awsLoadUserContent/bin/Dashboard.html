@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Data-Blitz Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+        * {
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        html {
+            color: #888;
+            display: table;
+            font-family: sans-serif;
+            height: 100%;
+            text-align: center;
+            width: 100%;
+        }
+
+        body {
+            display: table-cell;
+            vertical-align: middle;
+            margin: 2em auto;
+        }
+
+        h1 {
+            color: #555;
+            font-size: 2em;
+            font-weight: 400;
+        }
+
+        p {
+            margin: 0 auto;
+            width: 280px;
+        }
+
+        @media only screen and (max-width: 280px) {
+
+            body, p {
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 1.5em;
+                margin: 0 0 0.3em;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+
+<main role="main">
+    <h1>
+        <font size="+20">Simple User Analysis Dashboard</font>
+    </h1>
+    <br>
+
+    <article>
+        <article>
+            <div>User Creation Time Distribution</div>
+            <iframe src="http://localhost:5601/app/kibana#/dashboard/e6aa1a70-1b3e-11e8-8d7d-395b5fb24ed4?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3A'2018-01-24T19%3A19%3A24.005Z'%2Cmode%3Aabsolute%2Cto%3A'2018-01-25T04%3A36%3A12.418Z'))" height="600" width="800"></iframe>
+                <br>
+                <p>all users</p>
+                <br>
+                <hr>
+                <br>
+                <br>
+        </article>
+
+    </article>
+
+</main>
+</body>
+</html>
+
