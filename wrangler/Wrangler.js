@@ -5,6 +5,11 @@
  This source code is to be used exclusively by approved users and customers of Data-Blitz.
  */
 
+
+/*
+*/
+
+
 console.log('argv:' + process.argv);
 var async = require('async');
 var configuration = require(process.argv[2]);
