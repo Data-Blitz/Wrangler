@@ -1,0 +1,534 @@
+{
+  "title": "Transaction",
+  "type": "object",
+  "dataBlitz": {
+    "generator": "./planetClaire/ObjectGenerator",
+    "configuration": {
+    }
+  },
+
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/IdGenerator.js",
+        "configuration": {
+        }
+      }
+    },
+
+    "guid": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/IdGenerator.js",
+        "configuration": {
+        }
+      }
+    },
+    "id": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "user_id"
+        }
+      }
+    },
+    "account_guid": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "guid"
+        }
+      }
+    },
+    "account_id": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "user_id"
+        }
+      }
+    },
+    "user_guid": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "guid"
+        }
+      }
+    },
+    "amount": {
+      "type": "integer",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            100,
+            1000,
+            56,
+            5
+          ],
+          "likelyhoods": [
+            20,
+            30,
+            30,
+            20
+          ]
+        }
+      }
+    },
+    "catagory": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/StringGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            "dept",
+            "credit"
+          ],
+          "likelyhoods": [
+            40,
+            60
+          ]
+        }
+      }
+    },
+    "category_guid": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/IdGenerator.js",
+        "configuration": {
+        }
+      }
+    },
+    "check_number": {
+      "type": "integer",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            1000,
+            2000,
+            3000
+          ],
+          "likelyhoods": [
+            0.33,
+            0.33,
+            0.33
+          ]
+        }
+      }
+    },
+    "has_been_viewed": {
+      "type": "boolean",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            10,
+            90
+          ]
+        }
+      }
+    },
+    "is_bill_pay": {
+      "type": "boolean",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            10,
+            90
+          ]
+        }
+      }
+    },
+    "is_direct_deposit": {
+      "type": "boolean",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            0.50,
+            0.50
+          ]
+        }
+      }
+    },
+    "is_expense": {
+      "type": "boolean",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            0.50,
+            0.50
+          ]
+        }
+      }
+    },
+    "is_flagged": {
+      "type": "boolean",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            0.10,
+            0.90
+          ]
+        }
+      }
+    },
+    "is_hidden": {
+      "type": "boolean",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            0.10,
+            0.90
+          ]
+        }
+      }
+    },
+    "is_income": {
+      "type": "boolean",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            0.50,
+            0.50
+          ]
+        }
+      }
+    },
+    "is_overdraft_fee": {
+      "type": "boolean",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            0.10,
+            0.90
+          ]
+        }
+      }
+    },
+    "is_payroll_advance": {
+      "type": "boolean",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            0.10,
+            0.90
+          ]
+        }
+      }
+    },
+    "is_personal": {
+      "type": "boolean",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            0.10,
+            0.90
+          ]
+        }
+      }
+    },
+    "member_is_managed_by_user": {
+      "type": "boolean",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            0.70,
+            0.30
+          ]
+        }
+      }
+    },
+    "created_at": {
+      "type": "date",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/TimelineGenerator.js",
+        "configuration": {
+          "conditions": [
+            {
+              "timeline": "dept",
+              "attributeName": "catagory",
+              "attributeValue": "dept",
+              "timeStep": {
+                "timeStepInDays": 14
+              },
+              "noise": {
+                "noiseInDays": 2
+              }
+            },
+            {
+              "timeline": "credit",
+              "attributeName": "catagory",
+              "attributeValue": "credit",
+              "timeStep": {
+                "timeStepInDays": 3
+              },
+              "noise": {
+                "noiseInDays": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+
+    "date": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "created_at"
+        }
+      }
+    },
+    "description": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/StringGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            "shopping at macys",
+            "shopping at Amazon",
+            "shopping for food"
+          ],
+          "likelyhoods": [
+            33,
+            33,
+            33
+          ]
+        }
+      }
+    },
+    "merchant_category_code": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/StringGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            "5912",
+            "5698",
+            "5812"
+          ],
+          "likelyhoods": [
+            33,
+            33,
+            33
+          ]
+        }
+      }
+    },
+    "latitude": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/StringGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            "44.9735",
+            "44.9818",
+            "44.9818"
+          ],
+          "likelyhoods": [
+            33,
+            33,
+            33
+          ]
+        }
+      }
+    },
+    "longitude": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/StringGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            "93.2775",
+            "93.6775",
+            "93.4775"
+          ],
+          "likelyhoods": [
+            33,
+            33,
+            33
+          ]
+        }
+      }
+    },
+    "posted_at": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "created_at"
+        }
+      }
+    },
+    "posted_on": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "created_at"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/StringGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            "PENDING",
+            "POSTED"
+          ],
+          "likelyhoods": [
+            50,
+            50
+
+          ]
+        }
+      }
+    },
+    "transacted_on":{
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "created_at"
+        }
+      }
+    },
+    "top_level_category_guid": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "guid"
+        }
+      }
+    },
+    "type": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "catagory"
+        }
+      }
+    },
+    "has_been_split": {
+      "type": "boolean",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            0.10,
+            0.90
+          ]
+        }
+      }
+    },
+    "parent_guid": {
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "guid"
+        }
+      }
+    },
+    "revision": {
+      "type": "integer",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            1,
+            2,
+            3
+          ],
+          "likelyhoods": [
+            0.33,
+            0.33,
+            0.33
+          ]
+        }
+      }
+    }
+
+  }
+}

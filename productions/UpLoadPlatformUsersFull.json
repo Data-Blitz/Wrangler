@@ -1,0 +1,259 @@
+{
+  "productions": [
+    {
+      "logger": {
+        "loggerImpl": "./loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          }
+        }
+      },
+      "source": {
+        "name": "CsvBatchTupleStream",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "filename": "/Users/pharvener/data/input/users/vwPlatformusers.csv",
+          "columnNames": [
+            "userid",
+            "creationdatetime",
+            "modifieddatetime",
+            "identityid",
+            "birthyear",
+            "ageinyears",
+            "gender",
+            "relationshipstatus",
+            "residentstateus",
+            "initiallogindate",
+            "ethnicitywritein",
+            "faith",
+            "zipcode",
+            "email_domain",
+            "mxuserid",
+            "challengereminder",
+            "excludeuserflag",
+            "firstlogindatetime",
+            "cohort",
+            "firstuseappid"
+          ],
+          "batchSize": 1000,
+          "maxNumberOfOutstandingBatches": 20,
+          "backPressureWaitInMilliseconds": 3
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "AddTimestamp",
+          "wranglerImpl": "./wranglers/AddTimestamp.js",
+          "configuration": {
+            "timestampAttributeName": "timestamp-ISO",
+            "format": "ISO"
+          }
+        },
+        {
+          "name": "MergeUserAttributes",
+          "wranglerImpl": "./wranglers/MergeAttributeContent.js",
+          "configuration": {
+            "referenceIndex": "together-user-attributes",
+            "referenceType": "attribute",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "attributes"
+          }
+        },
+        {
+          "name": "ComputeLikeMe",
+          "wranglerImpl": "./wranglers/ScoreLikeMe.js",
+          "configuration": {
+            "host": "localhost:9200",
+            "numberOfMatches": 10,
+            "personaIndex": "together-sanitized-users-not-boosted",
+            "personaType": "user",
+            "matchingScheme": [
+              {
+                "path": "attributes.algnmtBdgtFocusFutr.keyword"
+              },
+              {
+                "path": "attributes.assessFinancialStress.keyword"
+              },
+              {
+                "path": "attributes.couplesMoneyHealth.keyword"
+              },
+              {
+                "path": "attributes.emergencySavings.keyword"
+              },
+              {
+                "path": "attributes.fiveS.keyword"
+              },
+              {
+                "path": "attributes.fixedExpensesHalfIncome.keyword"
+              },
+              {
+                "path": "attributes.fwaScore.keyword"
+              },
+              {
+                "path": "attributes.goal.keyword"
+              },
+              {
+                "path": "attributes.hasAutoIns.keyword"
+              },
+              {
+                "path": "attributes.hasAutoLoan.keyword"
+              },
+              {
+                "path": "attributes.hasCollegeSavings.keyword"
+              },
+              {
+                "path": "attributes.hasCreditCardDebt.keyword"
+              },
+              {
+                "path": "attributes.hasDisabilityIns.keyword"
+              },
+              {
+                "path": "attributes.hasDisabilityInsurance.keyword"
+              },
+              {
+                "path": "attributes.hasEmergSavings.keyword"
+              },
+              {
+                "path": "attributes.hasKids.keyword"
+              },
+              {
+                "path": "attributes.hasLifeIns.keyword"
+              },
+              {
+                "path": "attributes.hasLifeInsurance.keyword"
+              },
+              {
+                "path": "attributes.hasMoneyGoals.keyword"
+              },
+              {
+                "path": "attributes.hasMortgage.keyword"
+              },
+              {
+                "path": "attributes.hasPersonalDebt.keyword"
+              },
+              {
+                "path": "attributes.hasRetirementSavings.keyword"
+              },
+              {
+                "path": "attributes.hasSavingsBigPrchs.keyword"
+              },
+              {
+                "path": "attributes.hasStudentLoan.keyword"
+              },
+              {
+                "path": "attributes.haveAutomaticSavingSetup.keyword"
+              },
+              {
+                "path": "attributes.haveDebtmonthlyBalance.keyword"
+              },
+              {
+                "path": "attributes.hhIncomeTowardsRentMortgage.keyword"
+              },
+              {
+                "path": "attributes.householdIncomeRangeLowerBound.keyword"
+              },
+              {
+                "path": "attributes.householdIncomeRangeUpperBound.keyword"
+              },
+              {
+                "path": "attributes.jointFinancesStatus.keyword"
+              },
+              {
+                "path": "attributes.kidsEstimatedBirthYears.keyword"
+              },
+              {
+                "path": "attributes.livesBelowMeans.keyword"
+              },
+              {
+                "path": "attributes.moneyChildhood.keyword"
+              },
+              {
+                "path": "attributes.moneyConfidence.keyword"
+              },
+              {
+                "path": "attributes.moneyConversationConfidence.keyword"
+              },
+              {
+                "path": "attributes.moneyEmotions.keyword"
+              },
+              {
+                "path": "attributes.moneyImpactRelationship.keyword"
+              },
+              {
+                "path": "attributes.moneyMood.keyword"
+              },
+              {
+                "path": "attributes.moneyValues.keyword"
+              },
+              {
+                "path": "attributes.monthlyCreditCardBalance.keyword"
+              },
+              {
+                "path": "attributes.monthlyIncomeExceedsHHExpenses.keyword"
+              },
+              {
+                "path": "attributes.netMonthlyIncome.keyword"
+              },
+              {
+                "path": "attributes.numberOfKids.keyword"
+              },
+              {
+                "path": "birthyear.keyword",
+                "mustHave":true
+              },
+              {
+                "path": "challengereminder.keyword"
+              },
+              {
+                "path": "cohort.keyword"
+              },
+              {
+                "path": "ethnicitywritein.keyword"
+              },
+              {
+                "path": "faith.keyword"
+              },
+              {
+                "path": "firstuseappid.keyword"
+              },
+              {
+                "path": "gender.keyword"
+              },
+              {
+                "path": "identityid.keyword"
+              },
+              {
+                "path": "relationshipstatus.keyword"
+              },
+              {
+                "path": "residentstateus.keyword"
+              },
+              {
+                "path": "zipcode.keyword"
+              }
+            ]
+          }
+        }
+      ],
+      "sink": {
+        "name": "ElasticSearch",
+        "sinkImpl": "./sinks/ElasticSearchSink.js",
+        "configuration": {
+          "host": "localhost:9200",
+          "sinkIndex": "together-sanitized-users-not-boosted",
+          "sinkType": "user",
+          "_idAttributeName": "userid",
+          "bulkAction": "index"
+        }
+      }
+    }
+  ]
+}

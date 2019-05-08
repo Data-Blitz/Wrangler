@@ -1,0 +1,64 @@
+{
+  "productions": [
+    {
+      "name": "UpLoadPlatformEvents",
+      "logger": {
+        "loggerImpl": "./loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          }
+        }
+      },
+      "source": {
+        "name": "CsvBatchTupleStream",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "filename": "/Users/pharvener/data/input/mxusers/vwmxtransactions.csv",
+          "batchSize": 10000,
+          "maxNumberOfOutstandingBatches": 10,
+          "backPressureWaitInMilliseconds": 3
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "AddTimestamp",
+          "wranglerImpl": "./wranglers/AddTimestamp.js",
+          "configuration": {
+            "timestampAttributeName": "timestamp-ISO",
+            "format": "ISO"
+          }
+        },
+        {
+          "name": "AddGeo",
+          "wranglerImpl": "./wranglers/AddGeo.js",
+          "configuration": {
+            "geoAttributeName": "location",
+            "format": "GeoJSON",
+            "latAttributeName":"latitude",
+            "longAttributeName":"longitude",
+            "geoHash":false,
+            "mustHave":false
+          }
+        }
+      ],
+      "sink": {
+        "name": "ElasticSearch",
+        "sinkImpl": "./sinks/ElasticSearchSink.js",
+        "configuration": {
+          "host": "localhost:9200",
+          "sinkIndex": "mx-transactions",
+          "sinkType": "transaction",
+          "_idAttributeName": "id",
+          "bulkAction": "index"
+        }
+      }
+    }
+  ]
+}

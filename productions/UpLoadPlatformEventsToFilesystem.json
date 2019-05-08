@@ -1,0 +1,76 @@
+{
+  "productions": [
+    {
+      "name": "UpLoadPlatformEvents",
+
+      "logger": {
+        "loggerImpl": "./loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          },
+          "filename":"/Users/paul/clients/bpf-data-blitz-wrangler/WranglerLog.json"
+        }
+      },
+      "source": {
+        "name": "CsvBatchTupleStream",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "filename": "/Users/paul/data/brightpeak/11.09.17-VW-Data/platformEvents/Data.csv",
+          "batchSize": 50000,
+          "maxNumberOfOutstandingBatches":6,
+          "backPressureWaitInMilliseconds": 30
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js",
+        }
+      },
+      "wranglers": [
+        {
+          "name": "AdjustEventTimeTimestampFormat",
+          "wranglerImpl": "./wranglers/AdjustTimestampFormat.js",
+          "configuration": {
+            "timestampsToAdjust": [
+              {
+                "sourceAttributeName": "eventdatetime",
+                "format": "ISO",
+                "adjustedAttributeName": "eventdatetime-ISO"
+              }
+            ]
+          }
+        },
+
+        {
+          "name": "AddTimestamp",
+          "wranglerImpl": "./wranglers/AddTimestamp.js",
+          "configuration": {
+            "timestampAttributeName": "timestamp-ISO",
+            "format": "ISO"
+          }
+        },
+        {
+        "name": "MergeEventAttributes",
+        "wranglerImpl": "./wranglers/MergeAttributeContent.js",
+        "configuration": {
+          "referenceIndex": "event-attributes",
+          "referenceType": "attribute",
+          "referenceKey": "eventid",
+          "referenceSearchKey": "eventid.keyword",
+          "mergeKey": "attributes"
+        }
+        }
+      ],
+      "sink": {
+        "name": "FileSystemSink",
+        "sinkImpl": "./sinks/FileSystemSink.js",
+        "configuration": {
+          "fileName":"/Users/paul/clients/bpf-data-blitz-wrangler/MergeUserEvents"
+
+        }
+      }
+    }
+  ]
+}

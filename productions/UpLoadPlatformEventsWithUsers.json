@@ -1,0 +1,87 @@
+{
+  "productions": [
+    {
+      "name": "UpLoadPlatformEventsWithUser",
+      "logger": {
+        "loggerImpl": "./loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          }
+        }
+      },
+      "source": {
+        "name": "CsvBatchTupleStream",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "filename": "/Users/paul/data/brightpeak/11.09.17-VW-Data/platformEvents/Data.csv",
+          "batchSize": 1000,
+          "maxNumberOfOutstandingBatches": 10,
+          "backPressureWaitInMilliseconds": 1000
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "AdjustEventTimeTimestampFormat",
+          "wranglerImpl": "./wranglers/AdjustTimestampFormat.js",
+          "configuration": {
+            "timestampsToAdjust": [
+              {
+                "sourceAttributeName": "eventdatetime",
+                "format": "ISO",
+                "adjustedAttributeName": "eventdatetime-ISO"
+              }
+            ]
+          }
+        },
+        {
+          "name": "AddTimestamp",
+          "wranglerImpl": "./wranglers/AddTimestamp.js",
+          "configuration": {
+            "timestampAttributeName": "timestamp-ISO",
+            "format": "ISO"
+          }
+        },
+        {
+          "name": "MergeEventAttributes",
+          "wranglerImpl": "./wranglers/MergeAttributeContent.js",
+          "configuration": {
+            "referenceIndex": "event-attributes",
+            "referenceType": "attribute",
+            "referenceKey": "eventid",
+            "referenceSearchKey": "eventid.keyword",
+            "mergeKey": "attributes"
+          }
+        },
+        {
+          "name": "MergeUser",
+          "wranglerImpl": "./wranglers/MergeDocument.js",
+          "configuration": {
+            "referenceIndex": "wrangled-users",
+            "referenceType": "user",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "user"
+          }
+        }
+      ],
+      "sink": {
+        "name": "ElasticSearch",
+        "sinkImpl": "./sinks/ElasticSearchSink.js",
+        "configuration": {
+          "host": "https://search-data-blitz-36leyy4c4d3nljjtpjbl7q5osm.us-east-2.es.amazonaws.com",
+          "sinkIndex": "together-events",
+          "sinkType": "event",
+          "_idAttributeName": "eventid",
+          "bulkAction": "index"
+        }
+      }
+    }
+  ]
+}

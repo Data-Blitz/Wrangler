@@ -1,0 +1,476 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "properties": {
+    "userid": {
+      "$id": "/properties/userid",
+      "type": "string",
+      "title": "The Userid Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "5ec271e4-e28e-40cb-bfb3-f552170ab9dc"
+      ]
+    },
+    "creationdatetime": {
+      "$id": "/properties/creationdatetime",
+      "type": "string",
+      "title": "The Creationdatetime Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "2017-08-24 14:57:34.630000"
+      ]
+    },
+    "identityid": {
+      "$id": "/properties/identityid",
+      "type": "string",
+      "title": "The Identityid Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "us-east-1:6feb3343-d10e-425a-a878-004a7183553b"
+      ]
+    },
+    "birthdate": {
+      "$id": "/properties/birthdate",
+      "type": "string",
+      "title": "The Birthdate Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "1990-02-11 00:00:00.000000"
+      ]
+    },
+    "gender": {
+      "$id": "/properties/gender",
+      "type": "string",
+      "title": "The Gender Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "Female"
+      ]
+    },
+    "relationshipstatus": {
+      "$id": "/properties/relationshipstatus",
+      "type": "string",
+      "title": "The Relationshipstatus Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "Married"
+      ]
+    },
+    "residentstateus": {
+      "$id": "/properties/residentstateus",
+      "type": "string",
+      "title": "The Residentstateus Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "North Carolina"
+      ]
+    },
+    "initiallogindate": {
+      "$id": "/properties/initiallogindate",
+      "type": "string",
+      "title": "The Initiallogindate Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "zipcode": {
+      "$id": "/properties/zipcode",
+      "type": "string",
+      "title": "The Zipcode Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "phonenumber": {
+      "$id": "/properties/phonenumber",
+      "type": "string",
+      "title": "The Phonenumber Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        ""
+      ]
+    },
+    "email_domain": {
+      "$id": "/properties/email_domain",
+      "type": "string",
+      "title": "The Email_domain Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "gmail.com"
+      ]
+    },
+    "creationdatetime-ISO": {
+      "$id": "/properties/creationdatetime-ISO",
+      "type": "string",
+      "title": "The Creationdatetime-iso Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "2017-08-24T19:57:34.630Z"
+      ]
+    },
+    "birthdate-ISO": {
+      "$id": "/properties/birthdate-ISO",
+      "type": "string",
+      "title": "The Birthdate-iso Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "1990-02-11T06:00:00.000Z"
+      ]
+    },
+    "age": {
+      "$id": "/properties/age",
+      "type": "integer",
+      "title": "The Age Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": 0,
+      "examples": [
+        37
+      ]
+    },
+    "timestamp-ISO": {
+      "$id": "/properties/timestamp-ISO",
+      "type": "string",
+      "title": "The Timestamp-iso Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "2017-12-20T17:34:47.937Z"
+      ]
+    },
+    "attributes": {
+      "$id": "/properties/attributes",
+      "type": "object",
+      "properties": {
+        "moneyChildhood": {
+          "$id": "/properties/attributes/properties/moneyChildhood",
+          "type": "string",
+          "title": "The Moneychildhood Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "2"
+          ]
+        },
+        "hasAutoLoan": {
+          "$id": "/properties/attributes/properties/hasAutoLoan",
+          "type": "integer",
+          "title": "The Hasautoloan Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            1
+          ]
+        },
+        "moneyConfidence": {
+          "$id": "/properties/attributes/properties/moneyConfidence",
+          "type": "string",
+          "title": "The Moneyconfidence Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "2"
+          ]
+        },
+        "goal": {
+          "$id": "/properties/attributes/properties/goal",
+          "type": "string",
+          "title": "The Goal Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "Wanting my husband and I to be able to enjoy life rather than constantly being stressed about money."
+          ]
+        },
+        "moneyMood": {
+          "$id": "/properties/attributes/properties/moneyMood",
+          "type": "string",
+          "title": "The Moneymood Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "determined"
+          ]
+        },
+        "recommendedChapters": {
+          "$id": "/properties/attributes/properties/recommendedChapters",
+          "type": "string",
+          "title": "The Recommendedchapters Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "knowyourstory"
+          ]
+        },
+        "moneyEmotions": {
+          "$id": "/properties/attributes/properties/moneyEmotions",
+          "type": "string",
+          "title": "The Moneyemotions Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "1"
+          ]
+        },
+        "financialScore": {
+          "$id": "/properties/attributes/properties/financialScore",
+          "type": "string",
+          "title": "The Financialscore Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "58"
+          ]
+        },
+        "moneyValues": {
+          "$id": "/properties/attributes/properties/moneyValues",
+          "type": "string",
+          "title": "The Moneyvalues Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "2"
+          ]
+        },
+        "hasMoneyGoals": {
+          "$id": "/properties/attributes/properties/hasMoneyGoals",
+          "type": "string",
+          "title": "The Hasmoneygoals Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "3"
+          ]
+        },
+        "hasDisabilityIns": {
+          "$id": "/properties/attributes/properties/hasDisabilityIns",
+          "type": "string",
+          "title": "The Hasdisabilityins Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "true"
+          ]
+        },
+        "hasMortgage": {
+          "$id": "/properties/attributes/properties/hasMortgage",
+          "type": "string",
+          "title": "The Hasmortgage Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "true"
+          ]
+        },
+        "hasLifeIns": {
+          "$id": "/properties/attributes/properties/hasLifeIns",
+          "type": "string",
+          "title": "The Haslifeins Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "true"
+          ]
+        },
+        "livesBelowMeans": {
+          "$id": "/properties/attributes/properties/livesBelowMeans",
+          "type": "string",
+          "title": "The Livesbelowmeans Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "4"
+          ]
+        },
+        "hasPersonalDebt": {
+          "$id": "/properties/attributes/properties/hasPersonalDebt",
+          "type": "string",
+          "title": "The Haspersonaldebt Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "true"
+          ]
+        },
+        "fiveS": {
+          "$id": "/properties/attributes/properties/fiveS",
+          "type": "string",
+          "title": "The Fives Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "secure"
+          ]
+        },
+        "perceivedGoodCredit": {
+          "$id": "/properties/attributes/properties/perceivedGoodCredit",
+          "type": "string",
+          "title": "The Perceivedgoodcredit Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "true"
+          ]
+        },
+        "hasAutoIns": {
+          "$id": "/properties/attributes/properties/hasAutoIns",
+          "type": "string",
+          "title": "The Hasautoins Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "true"
+          ]
+        },
+        "hasHealthIns": {
+          "$id": "/properties/attributes/properties/hasHealthIns",
+          "type": "string",
+          "title": "The Hashealthins Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "true"
+          ]
+        },
+        "hasHomeRentersIns": {
+          "$id": "/properties/attributes/properties/hasHomeRentersIns",
+          "type": "string",
+          "title": "The Hashomerentersins Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "true"
+          ]
+        },
+        "hasCreditCardDebt": {
+          "$id": "/properties/attributes/properties/hasCreditCardDebt",
+          "type": "string",
+          "title": "The Hascreditcarddebt Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "true"
+          ]
+        },
+        "couplesMoneyHealth": {
+          "$id": "/properties/attributes/properties/couplesMoneyHealth",
+          "type": "string",
+          "title": "The Couplesmoneyhealth Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "2"
+          ]
+        }
+      }
+    },
+    "persona": {
+      "$id": "/properties/persona",
+      "type": "object",
+      "properties": {
+        "createTimestamp": {
+          "$id": "/properties/persona/properties/createTimestamp",
+          "type": "string",
+          "title": "The Createtimestamp Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "Wed, 20 Dec 2017 17:36:32 GMT"
+          ]
+        },
+        "personas": {
+          "$id": "/properties/persona/properties/personas",
+          "type": "object",
+          "properties": {
+            "Paul": {
+              "$id": "/properties/persona/properties/personas/properties/Paul",
+              "type": "number",
+              "title": "The Paul Schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                5.866518020629883
+              ]
+            },
+            "Kim": {
+              "$id": "/properties/persona/properties/personas/properties/Kim",
+              "type": "number",
+              "title": "The Kim Schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                4.480223655700684
+              ]
+            },
+            "Sara": {
+              "$id": "/properties/persona/properties/personas/properties/Sara",
+              "type": "number",
+              "title": "The Sara Schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                4.355692386627197
+              ]
+            },
+            "Brian": {
+              "$id": "/properties/persona/properties/personas/properties/Brian",
+              "type": "number",
+              "title": "The Brian Schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                3.969398021697998
+              ]
+            },
+            "Laura": {
+              "$id": "/properties/persona/properties/personas/properties/Laura",
+              "type": "number",
+              "title": "The Laura Schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                3.787076473236084
+              ]
+            },
+            "Sam": {
+              "$id": "/properties/persona/properties/personas/properties/Sam",
+              "type": "number",
+              "title": "The Sam Schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": 0,
+              "examples": [
+                3.0939292907714844
+              ]
+            }
+          }
+        },
+        "persona": {
+          "$id": "/properties/persona/properties/persona",
+          "type": "string",
+          "title": "The Persona Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "Paul"
+          ]
+        }
+      }
+    }
+  }
+}

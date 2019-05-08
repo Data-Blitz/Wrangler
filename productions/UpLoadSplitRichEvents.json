@@ -1,0 +1,66 @@
+{
+  "productions": [
+    {
+      "name": "UpLoadRichEventsWithSchemaFilter",
+      "logger": {
+        "loggerImpl": "/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          },
+          "filename":"/Users/paul/clients/bpf-data-blitz-wrangler/WranglerLog.json"
+        }
+      },
+
+
+      "source": {
+        "name": "JsonArraySource",
+        "sourceImpl": "./sources/JsonArrayToStream.js",
+        "configuration": {
+          "filename": "/Users/paul/clients/bpf-data-blitz-wrangler/RichEventStream0.json",
+          "batchSize": 5000,
+          "maxNumberOfOutstandingBatches": 5,
+          "backPressureWaitInMilliseconds": 30
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "PassThrough",
+          "wranglerImpl": "./wranglers/WranglerTemplate.js",
+          "configuration": {
+            "schemas":{
+              "richUser":{
+
+              }
+
+            }
+          }
+        }
+      ],
+      "sink": {
+        "name": "SplitTuples",
+        "sinkImpl": "./sinks/SplitTuplesStreamSink.js",
+        "configuration": {
+          "branches": [
+            {
+              "name":"pkiSplit",
+              "filterSchema":{},
+              "pass":{
+
+              },
+              "fail":{
+
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "productions": [
+    {
+      "name": "UpLoadPlatformEventsToFile",
+      "logger": {
+        "loggerImpl": "/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          },
+          "filename":"/Users/paul/clients/bpf-data-blitz-wrangler/WranglerLog.json"
+        }
+      },
+      "source": {
+        "name": "CsvBatchTupleStream",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "filename": "/Users/paul/data/brightpeak/11.09.17-VW-Data/platformEvents/Data.csv",
+          "batchSize": 500,
+          "maxNumberOfOutstandingBatches": 5,
+          "backPressureWaitInMilliseconds": 1000
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "AdjustEventTimeTimestampFormat",
+          "wranglerImpl": "./wranglers/AdjustTimestampFormat.js",
+          "configuration": {
+            "timestampsToAdjust": [
+              {
+                "sourceAttributeName": "eventdatetime",
+                "format": "ISO",
+                "adjustedAttributeName": "eventdatetime-ISO"
+              }
+            ]
+          }
+        },
+        {
+          "name": "MergeEventAttributes",
+          "wranglerImpl": "./wranglers/MergeAttributeContent.js",
+          "configuration": {
+            "referenceIndex": "event-attributes",
+            "referenceType": "attribute",
+            "referenceKey": "eventid",
+            "referenceSearchKey": "eventid.keyword",
+            "mergeKey": "attributes"
+          }
+        },
+        {
+          "name": "MergeUser",
+          "wranglerImpl": "./wranglers/MergeDocument.js",
+          "configuration": {
+            "referenceIndex": "wrangled-users",
+            "referenceType": "user",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "user"
+          }
+        }
+      ],
+      "sink":{
+        "name": "FileSystemSink",
+        "sinkImpl": "./sinks/JsonArrayFileSystemSink.js",
+        "configuration": {
+          "fileName":"/Users/paul/clients/bpf-data-blitz-wrangler/RichEventStream"
+        }
+      }
+    }
+  ]
+}
+
+
+

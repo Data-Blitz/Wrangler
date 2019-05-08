@@ -1,0 +1,658 @@
+{
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "properties": {
+
+    "guid": {
+      "$id": "/properties/guid",
+      "type": "string",
+      "title": "The Guid Schema",
+      "description": "The unique identifier for the account. Defined by MX",
+      "default": "",
+      "examples": [
+        "ACT-e1be9c3e- 10af-2811-e243- 19e81ebeb262"
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/IdGenerator.js",
+        "configuration": {
+          "randomStream":"account-actions"
+        }
+      }
+    },
+
+    "id": {
+      "$id": "/properties/id",
+      "type": "string",
+
+      "title": "The Id Schema",
+      "description": "The unique identifier for the account. Defined by the data provider",
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/IdGenerator.js",
+        "configuration": {
+        }
+      }
+    },
+
+    "user_guid": {
+      "$id": "/properties/user_guid",
+      "type": "string",
+      "title": "The User_guid Schema",
+      "description": "The unique identifier for the user the account belongs to. Defined by MX",
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "guid"
+        }
+      }
+    },
+
+    "user_id": {
+      "$id": "/properties/user_id",
+      "type": "string",
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "id"
+        }
+      },
+      "title": "The User_id Schema",
+      "description": "The unique identifier for the user the account belongs to. Defined by the partner",
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "id"
+        }
+      }
+    },
+
+    "member_guid": {
+      "$id": "/properties/member_guid",
+      "type": "string",
+      "title": "The Member_guid Schema",
+      "description": "The unique identifier for the member the account belongs to. Defined by MX",
+      "default": "",
+      "examples": [
+        "MBR-e1be9c3e- 10af-2811-e243- 19e81ebeb262"
+      ]
+    },
+
+    "account_number": {
+      "$id": "/properties/account_number",
+      "type": "string",
+      "title": "The Account_number Schema",
+      "description": "The account number. This will typically be a masked or partial account number.",
+      "default": 0,
+      "examples": [
+        "XXXX567"
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            1000,
+            2000,
+            3000
+          ],
+          "likelyhoods": [
+            0.33,
+            0.33,
+            0.33
+          ]
+        }
+      }
+    },
+
+    "apr": {
+      "$id": "/properties/apr",
+      "type": "number",
+      "title": "The Apr Schema",
+      "description": "The annual percentage rate",
+      "default": 0,
+      "examples": [
+        14.600000381469727
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            14.2,
+            12.4,
+            16.4
+          ],
+          "likelyhoods": [
+            0.33,
+            0.33,
+            0.33
+          ]
+        }
+      }
+    },
+
+    "apy": {
+      "$id": "/properties/apy",
+      "type": "number",
+      "title": "The Apy Schema",
+      "description": "The annual percentage yield",
+      "default": 0,
+      "examples": [
+        8.699999809265137
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            8.9,
+            8.6,
+            7.4
+          ],
+          "likelyhoods": [
+            0.33,
+            0.33,
+            0.33
+          ]
+        }
+      }
+    },
+
+    "available_balance": {
+      "$id": "/properties/available_balance",
+      "type": "integer",
+      "title": "The Available_balance Schema",
+      "description": "The available balance in the account",
+      "default": 0,
+      "examples": [
+        2500
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            2500,
+            1600,
+            4020
+          ],
+          "likelyhoods": [
+            0.33,
+            0.33,
+            0.33
+          ]
+        }
+      }
+    },
+
+    "balance": {
+      "$id": "/properties/balance",
+      "type": "number",
+      "title": "The Balance Schema",
+      "description": "The balance of the account.",
+      "default": "",
+      "examples": [
+        "3500"
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            3500,
+            6600,
+            2020
+          ],
+          "likelyhoods": [
+            0.33,
+            0.33,
+            0.33
+          ]
+        }
+      }
+    },
+
+    "cash_balance": {
+      "$id": "/properties/cash_balance",
+      "type": "integer",
+      "title": "The Cash_balance Schema",
+      "description": "The cash balance of the account",
+      "default": 0,
+      "examples": [
+        2000
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            3500,
+            8600,
+            1020
+          ],
+          "likelyhoods": [
+            0.33,
+            0.33,
+            0.33
+          ]
+        }
+      }
+    },
+
+    "created_at": {
+      "$id": "/properties/created_at",
+      "type": "string",
+      "title": "The Created_at Schema",
+      "description": "The date/time this account was created. Represented as a Unix Epoch datetime.",
+      "default": "",
+      "examples": [
+        1411760871
+      ]
+    },
+
+    "credit_limit": {
+      "$id": "/properties/credit_limit",
+      "type": "integer",
+      "title": "The Credit_limit Schema",
+      "description": "The credit limit of the account",
+      "default": 0,
+      "examples": [
+        2000
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            1000,
+            2000,
+            3000
+          ],
+          "likelyhoods": [
+            0.33,
+            0.33,
+            0.33
+          ]
+        }
+      }
+    },
+
+    "day_payment_is_due": {
+      "$id": "/properties/day_payment_is_due",
+      "type": "string",
+      "title": "The Day_payment_is_due Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "date"
+      ],
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/DateGenerator.js",
+        "configuration":{
+          "time": {
+            "currentTime":"2017-12-20T17:34:47.937Z",
+            "timeStepInMilliseconds":30000,
+            "noise":60000
+          }
+        }
+      }
+    },
+
+    "holdings_value": {
+      "$id": "/properties/holdings_value",
+      "type": "integer",
+      "title": "The Holdings_value Schema",
+      "description": "The value of holdings with this account",
+      "default": 0,
+      "examples": [
+        20000
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            10000,
+            20000,
+            30000
+          ],
+          "likelyhoods": [
+            0.33,
+            0.33,
+            0.33
+          ]
+        }
+      }
+    },
+
+    "institution_guid": {
+      "$id": "/properties/institution_guid",
+      "type": "string",
+      "title": "The Institution_guid Schema",
+      "description": "The unique identifier for the institution that this account is from. Defined by MX",
+      "default": "",
+      "examples": [
+        "djdjdjfdjdj"
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration": {
+          "copyAttributeName": "guid"
+        }
+      }
+    },
+
+    "interest_rate": {
+      "$id": "/properties/interest_rate",
+      "type": "number",
+      "title": "The Interest_rate Schema",
+      "description": "The interest rate of the account",
+      "default": 0,
+      "examples": [
+        16.899999618530273
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            4.24,
+            3.8,
+            5.1
+          ],
+          "likelyhoods": [
+            0.33,
+            0.33,
+            0.33
+          ]
+        }
+      }
+    },
+
+    "is_closed": {
+      "$id": "/properties/is_closed",
+      "type": "boolean",
+      "title": "The Is_closed Schema",
+      "description": "Indicates if this account is closed",
+      "default": false,
+      "examples": [
+        true
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            0.10,
+            0.90
+          ]
+        }
+      }
+    },
+
+    "is_hidden": {
+      "$id": "/properties/is_hidden",
+      "type": "boolean",
+      "title": "The Is_hidden Schema",
+      "description": "Indicates if this account is hidden",
+      "default": false,
+      "examples": [
+        true
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            0.10,
+            0.90
+          ]
+        }
+      }
+    },
+
+    "last_payment": {
+      "$id": "/properties/last_payment",
+      "type": "string",
+      "title": "The Last_payment Schema",
+      "description": "The amount of the last payment on this account.",
+      "default": "",
+      "examples": [
+        "date"
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration": {
+          "constant": true,
+          "possibleValues": [
+            true,
+            false
+          ],
+          "likelyhoods": [
+            0.10,
+            0.90
+          ]
+        }
+      }
+    },
+
+    "last_payment_at": {
+      "$id": "/properties/last_payment_at",
+      "type": "string",
+      "title": "The Last_payment_at Schema",
+      "description": "The date/time the last payment was applied on this account. Represented as a Unix Epoch datetime",
+      "default": "",
+      "examples": [
+        1411760871
+      ],
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/DateGenerator.js",
+        "configuration":{
+          "time": {
+            "currentTime":"2017-12-20T17:34:47.937Z",
+            "timeStepInMilliseconds":30000,
+            "noise":60000
+          }
+        }
+      }
+    },
+
+    "matures_at": {
+      "$id": "/properties/matures_at",
+      "type": "string",
+      "title": "The Matures_at Schema",
+      "description": "The date/time that this account will mature. Represented as a Unix Epoch datetime",
+      "default": "",
+      "examples": [
+        1411760871
+      ],
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/DateGenerator.js",
+        "configuration":{
+          "time": {
+            "currentTime":"2017-12-20T17:34:47.937Z",
+            "timeStepInMilliseconds":30000,
+            "noise":60000
+          }
+        }
+      }
+    },
+
+    "matures_on": {
+      "$id": "/properties/matures_on",
+      "type": "string",
+      "title": "The Matures_on Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "date"
+      ],
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/DateGenerator.js",
+        "configuration":{
+          "time": {
+            "currentTime":"2017-12-20T17:34:47.937Z",
+            "timeStepInMilliseconds":30000,
+            "noise":60000
+          }
+        }
+      }
+    },
+
+    "member_is_managed_by_user": {
+      "$id": "/properties/member_is_managed_by_user",
+      "type": "boolean",
+      "title": "The Member_is_managed_by_user Schema",
+      "description": "The date this account will mature. Represented as an ISO 8601 date.",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+
+    "minimum_balance": {
+      "$id": "/properties/minimum_balance",
+      "type": "integer",
+      "title": "The Minimum_balance Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": 0,
+      "examples": [
+        100
+      ],
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/DateGenerator.js",
+        "configuration":{
+          "time": {
+            "currentTime":"2017-12-20T17:34:47.937Z",
+            "timeStepInMilliseconds":30000,
+            "noise":60000
+          }
+        }
+      }
+    },
+
+    "name": {
+      "$id": "/properties/name",
+      "type": "string",
+      "title": "The Name Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "bank"
+      ],
+      "dataBlitz": {
+        "generator": "../utilities/planetClaire/generators/StringGenerator.js",
+        "configuration": {
+          "possibleValues": [
+            "dept",
+            "credit"
+          ],
+          "likelyhoods": [
+            40,
+            60
+          ]
+        }
+      }
+    },
+
+    "nickname": {
+      "$id": "/properties/nickname",
+      "type": "string",
+      "title": "The Nickname Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "banky"
+      ]
+    },
+
+    "original_balance": {
+      "$id": "/properties/original_balance",
+      "type": "integer",
+      "title": "The Original_balance Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": 0,
+      "examples": [
+        20000
+      ]
+    },
+
+    "payment_due_at": {
+      "$id": "/properties/payment_due_at",
+      "type": "string",
+      "title": "The Payment_due_at Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "date"
+      ]
+    },
+
+    "payment_due_on": {
+      "$id": "/properties/payment_due_on",
+      "type": "string",
+      "title": "The Payment_due_on Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "date"
+      ]
+    },
+
+    "payoff_balance": {
+      "$id": "/properties/payoff_balance",
+      "type": "integer",
+      "title": "The Payoff_balance Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": 0,
+      "examples": [
+        1234
+      ]
+    },
+
+    "property_type": {
+      "$id": "/properties/property_type",
+      "type": "string",
+      "title": "The Property_type Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "house"
+      ]
+    },
+
+    "started_at": {
+      "$id": "/properties/started_at",
+      "type": "string",
+      "title": "The Started_at Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "date"
+      ]
+    },
+
+    "started_on": {
+      "$id": "/properties/started_on",
+      "type": "string",
+      "title": "The Started_on Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "date"
+      ]
+    }
+  }
+}

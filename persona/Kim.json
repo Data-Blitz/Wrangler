@@ -1,0 +1,48 @@
+{
+  "personaName": "Kim",
+  "gender": "Female",
+  "Birthdate": "1/1/1989",
+  "state": "Colorado",
+  "attributes": {
+    "hasStudentLoan": false,
+    "hasCreditCardDebt": false,
+    "hasPersonalDebt": true,
+    "perceivedGoodCredit": true,
+    "hasAutoLoan": false,
+    "hasMortgage": false,
+    "hasEmergSavings": true,
+    "hasRetirementSavings": true,
+    "hasSavingsBigPrchs": true,
+    "hasDisabilityIns": true,
+    "hasHomeRentersIns": true,
+    "hasAutoIns": true,
+    "hasHealthIns": true,
+    "hasLifeIns": true,
+    "hasKids": false,
+    "livesBelowMeans": 3,
+    "hasMoneyGoals": 3,
+    "moneyConfidence": 3,
+    "moneyEmotions": 3,
+    "moneyChildhood": 4,
+    "moneyValues": 3,
+    "couplesMoneyHealth": 2,
+    "FiveS": "stable",
+    "Goal": "Preparing the house and getting the right products for baby,Provide a safe growing up experience for her children; Understanding how their budget will be impacted by new baby;Feel confident knowing that they'll be able to fund maternity leave and childcare afterwardsPaying off all of her student loans in the next two years; Be authentic and real",
+    "faith": "Christian",
+    "ethnicity": "Black or African American",
+    "numberOfKids": "Expecting"
+  },
+  "assessmentText":[
+    "I like God",
+    "I like last lineas without commas"
+  ],
+  "aboutMeText":[
+    "i am small",
+    "i am big with last no commas"
+  ]
+}
+
+
+
+
+

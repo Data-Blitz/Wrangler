@@ -1,0 +1,46 @@
+{
+  "productions": [
+    {
+      "name": "GenerateMXUsers",
+      "logger": {
+        "loggerImpl": "/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          },
+          "filename": "/Users/paul/clients/bpf-data-blitz-wrangler/WranglerLog.json"
+        }
+      },
+      "source": {
+        "name": "PlanetClaireSource",
+        "sourceImpl": "./sources/PlanetClaireToStream.js",
+        "configuration": {
+          "schema": "/Users/paul/clients/bpf-data-blitz-wrangler/schemas/MxUsersPlanetClaire.json",
+          "size":500,
+          "batchSize": 100,
+          "maxNumberOfOutstandingBatches": 5,
+          "backPressureWaitInMilliseconds": 1000
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "PassThrough",
+          "wranglerImpl": "./wranglers/WranglerTemplate.js"
+        }
+      ],
+      "sink":{
+        "name": "FileSystemSink",
+        "sinkImpl": "./sinks/JsonArrayFileSystemSink.js",
+        "configuration": {
+          "fileName":"/Users/paul/clients/bpf-data-blitz-wrangler/GeneratedMxStream"
+        }
+      }
+    }
+  ]
+}

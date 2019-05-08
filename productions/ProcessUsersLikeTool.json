@@ -1,0 +1,84 @@
+{
+  "productions": [
+    {
+      "name": "UsersLikeApplicationChannel",
+      "source": {
+        "name": "HttpToTuple",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "ConnectionDetails":{
+            "responsive":"true",
+            "applicationChannelUrl":"/j/j/j/j",
+            "applicationPort":5454,
+            "futureServer":{
+              "serverName":"elasticsearch",
+              "host": "localhost:9200",
+              "sinkIndex": "users-like-me-futures",
+              "sinkType": "future"
+            }
+          },
+          "batchSize": 10000,
+          "maxNumberOfOutstandingBatches": 2,
+          "backPressureWaitInMilliseconds": 1000
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js",
+          "configuration": {
+          }
+        }
+      },
+      "wranglers": [
+        {
+          "name": "AddAge",
+          "wranglerImpl": "./wranglers/AddAge.js",
+          "configuration": {
+            "dobAttributeName": "birthdate-ISO",
+            "ageAttributeName": "age"
+          }
+        },
+        {
+          "name": "AddTimestamp",
+          "wranglerImpl": "./wranglers/AddTimestamp.js",
+          "configuration": {
+            "timestampAttributeName": "timestamp-ISO",
+            "format": "ISO"
+          }
+        },
+        {
+          "name": "MergeUserAttributes",
+          "wranglerImpl": "./wranglers/MergeAttributeContent.js",
+          "configuration": {
+            "referenceIndex": "user-attributes",
+            "referenceType": "attribute",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "attributes"
+          }
+        },
+        {
+          "name": "AddPersona",
+          "wranglerImpl": "./wranglers/AddPersona.js",
+          "configuration": {
+            "host": "localhost:9200",
+            "personaIndex": "persona",
+            "personaType": "reference"
+          }
+        }
+
+      ],
+
+      "sink": {
+        "name": "ElasticSearch",
+        "sinkImpl": "./sinks/ElasticSearchFutureSink.js",
+        "configuration": {
+          "host": "localhost:9200",
+          "sinkIndex": "users-like-me-futures",
+          "sinkType": "future",
+          "_idAttributeName": "futureid",
+          "bulkAction": "index"
+        }
+      }
+    }
+  ]
+}

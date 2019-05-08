@@ -1,0 +1,46 @@
+{
+  "productions": [
+    {
+      "name": "UpLoadPlatformEventAttributes",
+      "logger": {
+        "loggerImpl": "winston",
+        "configuration": {
+        }
+      },
+      "source": {
+        "name": "CsvBatchTupleStream",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "filename": "/Users/pharvener/data/input/events/vwplatformcardeventattributes.csv",
+          "batchSize": 50000,
+          "maxNumberOfOutstandingBatches":5,
+          "backPressureWaitInMilliseconds":30
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "AddTimestamp",
+          "wranglerImpl": "./wranglers/AddTimestamp.js",
+          "configuration": {
+            "timestampAttributeName": "timestamp-ISO",
+            "format": "ISO"
+          }
+        }
+      ],
+      "sink": {
+        "name": "ElasticSearch",
+        "sinkImpl": "./sinks/ElasticSearchSink.js",
+        "configuration": {
+          "host": "localhost:9200",
+          "sinkIndex": "together-sanitized-event-attributes",
+          "sinkType": "attribute",
+          "bulkAction": "index"
+        }
+      }
+    }
+  ]
+}

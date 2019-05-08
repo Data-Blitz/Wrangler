@@ -1,0 +1,202 @@
+{
+  "together-sanitized-users": {
+    "mappings": {
+      "user": {
+        "properties": {
+          "ageinyears": {
+          },
+          "attributes": {
+            "properties": {
+              "algnmtBdgtFocusFutr": {
+              },
+              "annualIncome": {
+              },
+              "assessFinancialStress": {
+              },
+              "couplesMoneyHealth": {
+              },
+              "emergencySavings": {
+              },
+              "employerMatchRetirementContribution": {
+              },
+              "finStrssArguments": {
+              },
+              "financialScore": {
+              },
+              "findMoneyInvestEffort": {
+              },
+              "findMoneySideHustle": {
+              },
+              "findMoneyWillingToSell": {
+              },
+              "fiveS": {
+              },
+              "fixedExpensesHalfIncome": {
+              },
+              "fwaScore": {
+              },
+              "goal": {
+              },
+              "hasAutoIns": {
+              },
+              "hasAutoLoan": {
+              },
+              "hasCollegeSavings": {
+              },
+              "hasCreditCardDebt": {
+              },
+              "hasDisabilityIns": {
+              },
+              "hasDisabilityInsurance": {
+              },
+              "hasEmergSavings": {
+              },
+              "hasHealthIns": {
+              },
+              "hasHealthInsurance": {
+              },
+              "hasHomeRentersIns": {
+              },
+              "hasKids": {
+              },
+              "hasLifeIns": {
+              },
+              "hasLifeInsurance": {
+              },
+              "hasMoneyGoals": {
+              },
+              "hasMortgage": {
+              },
+              "hasPersonalDebt": {
+              },
+              "hasRetirementSavings": {
+              },
+              "hasSavingsBigPrchs": {
+              },
+              "hasStudentLoan": {
+              },
+              "haveAutomaticSavingSetup": {
+              },
+              "haveDebtmonthlyBalance": {
+              },
+              "hhIncomeTowardsRentMortgage": {
+              },
+              "householdIncomeRangeLowerBound": {
+              },
+              "householdIncomeRangeUpperBound": {
+              },
+              "jointFinancesStatus": {
+              },
+              "kidsEstimatedBirthYears": {
+              },
+              "livesBelowMeans": {
+              },
+              "moneyChildhood": {
+              },
+              "moneyConfidence": {
+              },
+              "moneyConversationConfidence": {
+              },
+              "moneyEmotions": {
+              },
+              "moneyImpactRelationship": {
+              },
+              "moneyMood": {
+              },
+              "moneyValues": {
+              },
+              "monthlyCreditCardBalance": {
+              },
+              "monthlyIncomeExceedsHHExpenses": {
+              },
+              "netMonthlyIncome": {
+              },
+              "numberOfKids": {
+              },
+              "perceivedGoodCredit": {
+              },
+              "perceivedNeedForCollegeSavings": {
+              },
+              "platformPoints": {
+              },
+              "prtnrCommRslvDisgrmt": {
+              },
+              "prtnrEqlEnrgyRltnshp": {
+              },
+              "prtnrInclMeFinDec": {
+              },
+              "recommendedChapters": {
+              },
+              "relDimAlignmentOnBudget": {
+              },
+              "relDimCloseFriendship": {
+              },
+              "relDimCollaborativeDecisionMaking": {
+              },
+              "relDimEffectiveCommunication": {
+              },
+              "relDimMutualAppreciation": {
+              },
+              "relDimRelationshipCommitment": {
+              },
+              "relDimStressManagement": {
+              },
+              "relShortFormOverview": {
+              },
+              "retirementSavingsIncome": {
+              },
+              "savingsForFuturePurchases": {
+              },
+              "userDebtGoal": {
+              },
+              "weTrackExpenses": {
+              },
+              "zipCode": {
+              }
+            }
+          },
+          "birthyear": {
+          },
+          "challengereminder": {
+          },
+          "cohort": {
+          },
+          "creationdatetime": {
+          },
+          "email_domain": {
+          },
+          "ethnicitywritein": {
+          },
+          "excludeuserflag": {
+          },
+          "faith": {
+          },
+          "firstlogindatetime": {
+          },
+          "firstuseappid": {
+          },
+          "gender": {
+          },
+          "identityid": {
+          },
+          "initiallogindate": {
+          },
+          "modifieddatetime": {
+          },
+          "mxuserid": {
+          },
+          "relationshipstatus": {
+          },
+          "residentstateus": {
+          },
+          "timestamp-ISO": {
+          },
+          "userid": {
+          },
+          "zipcode": {
+          }
+        }
+      }
+    }
+  }
+}

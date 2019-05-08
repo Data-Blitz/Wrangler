@@ -1,0 +1,176 @@
+{
+  "title": "RichTransaction",
+  "type": "object",
+  "dataBlitz":{
+    "generator":"./planetClaire/ObjectGenerator",
+    "configuration":{
+      "alias":"user"
+    }
+  },
+  "properties": {
+    "age": {
+      "type": "integer",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/AgeGenerator.js",
+        "configuration":{
+        }
+      }
+    },
+
+    "user_id": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/IdGenerator.js",
+          "configuration":{
+        }
+      }
+    },
+
+    "guid": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/IdGenerator.js",
+        "configuration":{
+        }
+      }
+    },
+    "id": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/IdGenerator.js",
+        "configuration":{
+        }
+      }
+    },
+
+    "gender": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/GenderGenerator.js",
+        "configuration":{
+        }
+      }
+    },
+
+    "first_name": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/FirstNameGenerator.js",
+        "configuration":{
+          "female":70
+        }
+      }
+    },
+    "last_name": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/LastNameGenerator.js",
+        "configuration":{
+        }
+      }
+    },
+
+    "is_disabled": {
+      "type": "boolean",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/BooleanGenerator.js",
+        "configuration":{
+          "constant":true,
+          "possibleValues":[true,false],
+          "likelyhoods":[0.50,0.50]
+        }
+      }
+    },
+
+    "update_at": {
+      "type": "date",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/DateGenerator.js",
+        "configuration":{
+          "time": {
+            "currentTime":"2017-12-20T17:34:47.937Z",
+            "timeStepInMilliseconds":30000,
+            "noise":60000
+          }
+        }
+      }
+    },
+
+
+    "logged_in_at": {
+      "type": "date",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/DateGenerator.js",
+        "configuration":{
+          "time": {
+            "currentTime":"2017-12-20T17:34:47.937Z",
+            "timeStepInMilliseconds":30000,
+            "noise":60000
+          }
+        }
+      }
+    },
+    "birthday": {
+      "type": "date",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/BirthdayGenerator.js",
+        "configuration":{
+          "ageAttributeName":"age"
+        }
+      }
+    },
+    "birthdate": {
+      "type": "date",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/CopyGenerator.js",
+        "configuration":{
+          "copyAttributeName":"birthday"
+        }
+      }
+    },
+    "email": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/EmailGenerator.js",
+        "configuration":{
+          "firstNameAttributeName":"first_name",
+          "lastNameAttributeName":"last_name",
+          "possibleValues":["@gmail.com","@hotmail.com","@yahoo.com"],
+          "likelyhoods":[0.33,0.33,0.33]
+        }
+      }
+    },
+
+    "version": {
+      "type": "integer",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration":{
+          "possibleValues":[1,2,3],
+          "likelyhoods":[0.33,0.33,0.33]
+        }
+      }
+    },
+
+    "zip_code": {
+      "type": "integer",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/ZipCodeGenerator.js",
+        "configuration":{
+        }
+      }
+    },
+    "phone": {
+      "type": "integer",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/PhoneNumberGenerator.js",
+        "configuration":{
+        }
+      }
+    }
+  },
+  "required": [
+    "firstName",
+    "lastName"
+  ]
+}

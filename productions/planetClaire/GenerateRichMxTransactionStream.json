@@ -1,0 +1,59 @@
+{
+  "productions": [
+    {
+      "name": "GenerateMxTransaction",
+      "logger": {
+        "loggerImpl": "./loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          },
+          "filename": "/Users/paul/clients/bpf-data-blitz-wrangler/Log.json"
+        }
+      },
+      "source": {
+        "name": "PlanetClaireSource",
+        "sourceImpl": "./sources/PlanetClaireToStream.js",
+        "configuration": {
+          "schema": "/Users/paul/clients/bpf-data-blitz-wrangler/schemas/MxUsersPlanetClaire.json",
+          "size":100,
+          "batchSize": 10,
+          "maxNumberOfOutstandingBatches": 1,
+          "backPressureWaitInMilliseconds": 1000
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "GenerateTransactions",
+          "wranglerImpl": "./wranglers/GenerateEvents.js",
+          "configuration": {
+            "referenceName":"user",
+            "timeline":{
+              "dept":"2017-12-20T17:34:47.937Z",
+              "credit":"2017-12-20T17:34:47.937Z"
+            },
+            "schema": "/Users/paul/clients/bpf-data-blitz-wrangler/schemas/MX-transaction-dataBlitz.json",
+            "size":40
+          }
+        }
+      ],
+      "sink": {
+        "name": "ElasticSearch",
+        "sinkImpl": "./sinks/ElasticSearchSink.js",
+        "configuration": {
+          "host": "https://search-data-blitz-36leyy4c4d3nljjtpjbl7q5osm.us-east-2.es.amazonaws.com",
+          "sinkIndex": "mx-transactions",
+          "sinkType": "transaction",
+          "_idAttributeName": "eventid",
+          "bulkAction": "index"
+        }
+      }
+    }
+  ]
+}

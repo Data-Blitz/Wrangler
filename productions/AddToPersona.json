@@ -1,0 +1,53 @@
+{
+  "productions": [
+    {
+      "logger": {
+        "loggerImpl": "./loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          },
+          "filename":"/Users/paul/clients/bpf-data-blitz-wrangler/WranglerLog.json"
+        }
+      },
+      "source": {
+        "name": "CsvBatchTupleStream",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "filename": "/Users/paul/data/brightpeak/11.09.17-VW-Data/platformUsers/Data.csv",
+          "batchSize": 1000,
+          "maxNumberOfOutstandingBatches": 20,
+          "backPressureWaitInMilliseconds": 3
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "UpdatePersona",
+          "wranglerImpl": "./wranglers/UpdatePersona.js",
+          "configuration": {
+            "host": "localhost:9200",
+            "personaIndex": "persona",
+            "personaType": "reference"
+          }
+        }
+      ],
+      "sink": {
+        "name": "ElasticSearch",
+        "sinkImpl": "./sinks/ElasticSearchSink.js",
+        "configuration": {
+          "host": "localhost:9200",
+          "sinkIndex": "together-users",
+          "sinkType": "user",
+          "_idAttributeName": "userid",
+          "bulkAction": "index"
+        }
+      }
+    }
+  ]
+}

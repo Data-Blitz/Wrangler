@@ -1,0 +1,83 @@
+{
+  "title": "Transaction",
+  "type": "object",
+  "dataBlitz":{
+    "generator":"./planetClaire/ObjectGenerator",
+    "configuration":{
+    }
+  },
+  "properties": {
+
+  "catagory": {
+    "type": "string",
+    "dataBlitz":{
+      "generator":"../utilities/planetClaire/generators/StringGenerator.js",
+      "configuration":{
+        "possibleValues":["dept","credit"],
+        "likelyhoods":[40,60]
+      }
+    }
+  },
+
+
+    "user_id": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/IdGenerator.js",
+          "configuration":{
+        }
+      }
+    },
+
+    "guid": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/IdGenerator.js",
+        "configuration":{
+        }
+      }
+    },
+    "id": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/IdGenerator.js",
+        "configuration":{
+        }
+      }
+    },
+
+    "update_at": {
+      "type": "date",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/TimelineGenerator.js",
+        "configuration":{
+          "conditions": [
+            {
+              "timeline":"dept",
+              "attributeName": "catagory",
+              "attributeValue": "dept",
+              "timeStep": {
+                "timeStepInDays": 14
+              },
+              "noise": {
+                "noiseInDays": 2
+              }
+            },
+            {
+              "timeline":"credit",
+              "attributeName": "catagory",
+              "attributeValue": "credit",
+              "timeStep": {
+                "timeStepInDays": 3
+              },
+              "noise": {
+                "noiseInDays": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+
+  }
+}

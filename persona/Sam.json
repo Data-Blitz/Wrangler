@@ -1,0 +1,42 @@
+{
+  "personaName": "Sam",
+  "gender": "Male",
+  "Birthdate": "1/1/1984",
+  "state":"Tennessee",
+  "attributes": {
+    "hasStudentLoan": true,
+    "hasCreditCardDebt": false,
+    "hasPersonalDebt": true,
+    "perceivedGoodCredit": true,
+    "hasAutoLoan": false,
+    "hasMortgage": false,
+    "hasEmergSavings": true,
+    "hasRetirementSavings": true,
+    "hasSavingsBigPrchs": true,
+    "hasDisabilityIns": false,
+    "hasHomeRentersIns": true,
+    "hasAutoIns": true,
+    "hasHealthIns": true,
+    "hasLifeIns": true,
+    "hasKids": true,
+    "hasCollegeSavings": false,
+    "perceivedNeedForCollegeSavings": true,
+    "livesBelowMeans": 3,
+    "hasMoneyGoals": 3,
+    "moneyConfidence": 1,
+    "moneyEmotions": 3,
+    "moneyChildhood": 2,
+    "moneyValues": 4,
+    "couplesMoneyHealth": 4,
+    "FiveS": "stable",
+    "Goal": "Save for a bigger house for their growing family; Save for kids' college education, Provide financial support for his and Laura's parents, Teach their children to be 200%'rs: 100% Latino and 100% American; Raise their children to be financially responsible, socially, generous, and to live within their means;Lose a little weight and stay healthy",
+    "faith": "Christian",
+    "ethnicity": "Hispanic, Latino, or Spanish",
+    "numberOfKids":"2"
+  }
+}
+
+
+
+
+

@@ -1,0 +1,156 @@
+{
+  "productions": [
+    {
+      "logger": {
+        "loggerImpl": "./loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          }
+        }
+      },
+      "source": {
+        "name": "ElasticSearchToStream",
+        "sourceImpl": "./sources/ElasticSearchToStream.js",
+        "configuration": {
+          "host": "localhost:9200",
+          "sourceIndex": "together-sanitized-users",
+          "sourceType": "user",
+          "batchSize": 1000,
+          "maxNumberOfOutstandingBatches": 20,
+          "backPressureWaitInMilliseconds": 3
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "AddTimestamp",
+          "wranglerImpl": "./wranglers/AddTimestamp.js",
+          "configuration": {
+            "timestampAttributeName": "timestamp-ISO",
+            "format": "ISO"
+          }
+        },
+        {
+          "name": "MergeUserAttributes",
+          "wranglerImpl": "./wranglers/MergeAttributeContent.js",
+          "configuration": {
+            "referenceIndex": "together-user-attributes",
+            "referenceType": "attribute",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "attributes"
+          }
+        },
+        {
+          "name": "ComputeLikeMe",
+          "wranglerImpl": "./wranglers/ScoreLikeMe.js",
+          "configuration": {
+            "host": "localhost:9200",
+            "numberOfMatches": 10,
+            "personaIndex": "together-sanitized-users",
+            "personaType": "user",
+            "matchingScheme": [
+              {
+                "path": "gender",
+                "boost": 10,
+                "mustHave":true
+              },
+              {
+                "path": "ageinyears",
+                "boost": -10
+              },
+              {
+                "path": "state",
+                "boost": 10
+              },
+              {
+                "path": "relaltionshipstatus",
+                "boost": 50
+              },
+              {
+                "path": "residentstateus",
+                "boost": 50
+              },
+              {
+                 "path":"faith",
+                 "boost": 10
+              },
+
+              {
+                "path": "attributes.hasLifeIns.keyword"
+              },
+              {
+                "path": "attributes.hasLifeInsurance.keyword"
+              },
+              {
+                "path": "attributes.hasMoneyGoals.keyword"
+              },
+              {
+                "path": "attributes.hasMortgage.keyword"
+              },
+              {
+                "path": "attributes.hasPersonalDebt.keyword"
+              },
+              {
+                "path": "attributes.hasRetirementSavings.keyword"
+              },
+              {
+                "path": "attributes.hasSavingsBigPrchs.keyword"
+              },
+              {
+                "path": "attributes.hasStudentLoan.keyword"
+              },
+              {
+                "path": "attributes.haveAutomaticSavingSetup.keyword"
+              },
+              {
+                "path": "attributes.haveDebtmonthlyBalance.keyword"
+              },
+              {
+                "path": "attributes.hhIncomeTowardsRentMortgage.keyword"
+              },
+
+              {
+                "path": "attributes.couplesMoneyHeath",
+                "boost": 10
+              },
+              {
+               "path": "attributes.hasCreditCardDept",
+                "boost": 10
+              },
+              {
+                "path": "attributes.hasEmergSavings",
+                "boost": 10
+              },
+              {
+                "path": "attributes.hasKids",
+                "boost": 20
+              } ,
+              {
+                "path": "attributes.annualIncome",
+                "boost": 10
+              }
+            ]
+          }
+        }
+      ],
+      "sink": {
+        "name": "ElasticSearch",
+        "sinkImpl": "./sinks/ElasticSearchSink.js",
+        "configuration": {
+          "host": "localhost:9200",
+          "sinkIndex": "together-sanitized-users",
+          "sinkType": "user",
+          "_idAttributeName": "userid",
+          "bulkAction": "index"
+        }
+      }
+    }
+  ]
+}

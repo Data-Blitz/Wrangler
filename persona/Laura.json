@@ -1,0 +1,42 @@
+{
+  "personaName": "Laura",
+  "gender": "Female",
+  "Birthdate": "1/1/1986",
+  "state":"Tennessee",
+  "attributes": {
+    "hasStudentLoan": true,
+    "hasCreditCardDebt": true,
+    "hasPersonalDebt": true,
+    "perceivedGoodCredit": true,
+    "hasAutoLoan": false,
+    "hasMortgage": false,
+    "hasEmergSavings": true,
+    "hasRetirementSavings": true,
+    "hasSavingsBigPrchs": true,
+    "hasDisabilityIns": false,
+    "hasHomeRentersIns": true,
+    "hasAutoIns": true,
+    "hasHealthIns": true,
+    "hasLifeIns": false,
+    "hasKids": true,
+    "hasCollegeSavings": false,
+    "perceivedNeedForCollegeSavings": true,
+    "livesBelowMeans": 3,
+    "hasMoneyGoals": 3,
+    "moneyConfidence": 1,
+    "moneyEmotions": 3,
+    "moneyChildhood": 2,
+    "moneyValues": 4,
+    "couplesMoneyHealth": 3,
+    "FiveS": "stable",
+    "Goal": "Save for kids' college education, Save for a bigger house for their growing family Increase sales of her handmade jewelry online & at art fairs; Provide financial support for her aging parents; Feel more confident that they have their "ducks in a row"; Teach children to live their out their faith in actionable ways",
+    "faith": "Christian",
+    "ethnicity": "Hispanic, Latino, or Spanish",
+    "numberOfKids": "2"
+  }
+}
+
+
+
+
+

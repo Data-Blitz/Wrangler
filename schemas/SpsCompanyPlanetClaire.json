@@ -1,0 +1,64 @@
+{
+  "title": "SpsCompany",
+  "type": "object",
+  "dataBlitz":{
+    "generator":"./planetClaire/ObjectGenerator",
+    "configuration":{
+    }
+  },
+  "properties": {
+
+    "company_id": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/IdGenerator.js",
+          "configuration":{
+        }
+      }
+    },
+
+    "company_name": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/LastNameGenerator.js",
+        "configuration":{
+        }
+      }
+    },
+
+    "applications": {
+      "type": "object",
+      "properties": {
+        "app1":{
+
+        },
+        "app2":{
+
+        },
+        "app3":{
+
+        }
+      }
+
+    },
+    "version": {
+      "type": "integer",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/NumberGenerator.js",
+        "configuration":{
+          "possibleValues":[1,2],
+          "likelyhoods":[0.95,0.00]
+        }
+      }
+    },
+
+    "zip_code": {
+      "type": "integer",
+      "dataBlitz":{
+        "generator":"../utilities/planetClaire/generators/ZipCodeGenerator.js",
+        "configuration":{
+        }
+      }
+    }
+  }
+}

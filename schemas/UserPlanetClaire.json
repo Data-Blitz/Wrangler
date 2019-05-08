@@ -1,0 +1,172 @@
+{
+  "title": "RichUser",
+  "type": "object",
+  "dataBlitz":{
+    "generator":"./planetClaire/ObjectGenerator",
+    "configuration":{
+      "size":100,
+      "timelines": {
+        "eventTime":{
+          "currentTime":"2017-12-20T17:34:47.937Z",
+          "noise":30000
+        }
+
+      }
+    }
+  },
+  "properties": {
+
+    "age": {
+      "type": "integer",
+      "dataBlitz":{
+        "generator":"/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/utilities/planetClaire/generators/AgeGenerator.js",
+        "configuration":{
+        }
+      }
+    },
+
+    "userid": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/utilities/planetClaire/generators/IdGenerator.js",
+          "configuration":{
+        }
+      }
+    },
+
+    "eventTimetamp": {
+      "type": "date",
+      "dataBlitz":{
+        "generator":"/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/utilities/planetClaire/generators/DateGenerator.js",
+        "configuration":{
+          "time": {
+            "currentTime":"2017-12-20T17:34:47.937Z",
+            "timeStepInMilliseconds":60000,
+            "noise":30000
+          }
+        }
+      }
+    },
+
+    "gender": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/utilities/planetClaire/generators/GenderGenerator.js",
+        "configuration":{
+        }
+      }
+    },
+
+    "firstName": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/utilities/planetClaire/generators/FirstNameGenerator.js",
+        "configuration":{
+          "female":70
+        }
+      }
+    },
+    "lastName": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/utilities/planetClaire/generators/LastNameGenerator.js",
+        "configuration":{
+        }
+      }
+    },
+
+    "birthday": {
+      "type": "date",
+      "dataBlitz":{
+        "generator":"/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/utilities/planetClaire/generators/BirthdayGenerator.js",
+        "configuration":{
+          "ageAttributeName":"age"
+        }
+      }
+    },
+
+    "email": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/utilities/planetClaire/generators/EmailGenerator.js",
+        "configuration":{
+          "firstNameAttributeName":"firstName",
+          "lastNameAttributeName":"lastName",
+          "possibleValues":["@gmail.com","@hotmail.com","@yahoo.com"],
+          "likelyhoods":[0.33,0.33,0.33]
+        }
+      }
+    },
+
+
+
+    "food": {
+      "type": "string",
+      "dataBlitz":{
+        "generator":"/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/utilities/planetClaire/generators/AttributeGenerator.js",
+        "configuration":{
+          "possibleValues":["pizza","hamburger","chicken","sushi"],
+          "likelyhoods":[0.25,0.25,0.25,0.25]
+        }
+      }
+    },
+
+
+    "attributes":{
+      "type": "object",
+      "properties": {
+        "animal": {
+          "type": "string",
+          "dataBlitz":{
+            "generator":"/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/utilities/planetClaire/generators/AttributeGenerator.js",
+            "configuration":{
+              "possibleValues":["frog","tiger","chicken","hippo"],
+              "likelyhoods":[0.25,0.25,0.25,0.25]
+            }
+          }
+        },
+        "plant": {
+          "type": "string",
+          "dataBlitz":{
+            "generator":"/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/utilities/planetClaire/generators/AttributeGenerator.js",
+            "configuration":{
+              "possibleValues":["tree","brush","vine","grass"],
+              "likelyhoods":[0.25,0.25,0.25,0.25]
+            }
+          }
+        },
+        "cars":{
+          "type": "object",
+          "properties": {
+            "make": {
+              "type": "string",
+              "dataBlitz":{
+                "generator":"/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/utilities/planetClaire/generators/AttributeGenerator.js",
+                "configuration":{
+                  "possibleValues":["chevy","ford","vw","gm"],
+                  "likelyhoods":[0.25,0.25,0.25,0.25]
+                }
+              }
+            },
+            "place": {
+              "type": "string",
+              "dataBlitz":{
+                "generator":"/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/utilities/planetClaire/generators/AttributeGenerator.js",
+                "configuration":{
+                  "possibleValues":["house","box","building","street"],
+                  "likelyhoods":[0.25,0.25,0.25,0.25]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+  },
+  "required": [
+    "firstName",
+    "lastName"
+  ]
+}

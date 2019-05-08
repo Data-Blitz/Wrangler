@@ -1,0 +1,53 @@
+{
+  "personaName": "Brian",
+  "gender": "Male",
+  "Birthdate": "1/1/1984",
+  "state":"Colorado",
+  "attributes":{
+    "hasStudentLoan": true,
+    "hasCreditCardDebt": true,
+    "hasPersonalDebt": true,
+    "perceivedGoodCredit": true,
+    "hasAutoLoan": false,
+    "hasMortgage": false,
+    "hasEmergSavings": false,
+    "hasRetirementSavings": true,
+    "hasSavingsBigPrchs": false,
+    "hasDisabilityIns": true,
+    "hasHomeRentersIns": true,
+    "hasAutoIns": true,
+    "hasHealthIns": true,
+    "hasLifeIns": true,
+    "hasKids": false,
+    "livesBelowMeans": 3,
+    "hasMoneyGoals": 1,
+    "moneyConfidence": 2,
+    "moneyEmotions": 3,
+    "moneyChildhood": 3,
+    "moneyValues": 3,
+    "couplesMoneyHealth": 2,
+    "FiveS": "struggling",
+    "Goal": "Preparing finances for their first child due in six months; Need to figure out how they'll fund maternity leave and daycare; Pay off all combined debt between he and his wife in the next two years. (Kim has student loans, Brian is about to pay off his last credit card.); Feel confident that their child will be protected; To be authentic and transparent in his life",
+    "faith": "Christian",
+    "ethnicity": "White",
+    "numberOfKids": "Expecting"
+  },
+  "assessmentText":[
+    "I like God",
+    "I like last lineas without commas"
+  ],
+  "aboutMeText":[
+    "i am small",
+    "i am big with last no commas",
+    "I am having my first child",
+    "I approve of labor union",
+    "I work in skilled trades",
+    "i live in the mountain states"
+  ],
+  "bio":"Brian is a hard-worker"
+}
+
+
+
+
+

@@ -1,0 +1,56 @@
+{
+  "productions": [
+    {
+      "name": "UpLoadPlatformUserAttributes",
+      "logger": {
+        "loggerImpl": "./loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          },
+          "filename":"/Users/paul/data/together-log/DataBlitzLog.json"
+        }
+      },
+      "source": {
+        "name": "CsvBatchTupleStream",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "filename": "/Users/pharvener/data/input/users/attributes.csv",
+          "columnNames":["instanceid","attributename","attributevalue","effectivedatetime","iscurrent","userid","enddatetime"],
+          "batchSize": 10000,
+          "maxNumberOfOutstandingBatches":10,
+          "backPressureWaitInMilliseconds":300
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js",
+          "configuration": {
+            "backPressure": false
+          }
+        }
+      },
+      "wranglers": [
+        {
+          "name": "AddTimestamp",
+          "wranglerImpl": "./wranglers/AddTimestamp.js",
+          "configuration": {
+            "timestampAttributeName": "timestamp-ISO",
+            "format": "ISO"
+          }
+        }
+      ],
+      "sink": {
+        "name": "ElasticSearch",
+        "sinkImpl": "./sinks/ElasticSearchSink.js",
+        "configuration": {
+          "host": "localhost:9200",
+          "sinkIndex": "together-user-attributes",
+          "sinkType": "attribute",
+          "bulkAction": "index"
+        }
+      }
+    }
+  ]
+}

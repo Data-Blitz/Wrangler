@@ -1,0 +1,91 @@
+{
+  "productions": [
+    {
+      "name": "UpLoadPlatformEvents",
+      "logger": {
+        "loggerImpl": "./loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          }
+        }
+      },
+      "source": {
+        "name": "CsvBatchTupleStream",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "filename": "/Users/pharvener/data/input/events/vwplatformevents.csv",
+          "columnNames": [
+            "eventid",
+            "component",
+            "eventdatetime",
+            "eventaction",
+            "userid",
+            "sourcesystem",
+            "userloginrownumberasc",
+            "logindatetime",
+            "nextlogindatetime",
+            "sessioneventrownumberasc",
+            "secondsbeforenexteventinsession",
+            "nexteventdatetime"
+          ],
+          "batchSize": 1000,
+          "maxNumberOfOutstandingBatches": 20,
+          "backPressureWaitInMilliseconds": 3
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "AdjustEventTimeTimestampFormat",
+          "wranglerImpl": "./wranglers/AdjustTimestampFormat.js",
+          "configuration": {
+            "timestampsToAdjust": [
+              {
+                "sourceAttributeName": "eventdatetime",
+                "format": "ISO",
+                "adjustedAttributeName": "eventdatetime-ISO"
+              }
+            ]
+          }
+        },
+
+        {
+          "name": "AddTimestamp",
+          "wranglerImpl": "./wranglers/AddTimestamp.js",
+          "configuration": {
+            "timestampAttributeName": "timestamp-ISO",
+            "format": "ISO"
+          }
+        },
+        {
+        "name": "MergeEventAttributes",
+        "wranglerImpl": "./wranglers/MergeAttributeContent.js",
+        "configuration": {
+          "referenceIndex": "together-sanitized-event-attributes",
+          "referenceType": "attribute",
+          "referenceKey": "eventid",
+          "referenceSearchKey": "eventid.keyword",
+          "mergeKey": "attributes"
+        }
+        }
+      ],
+      "sink": {
+        "name": "ElasticSearch",
+        "sinkImpl": "./sinks/ElasticSearchSink.js",
+        "configuration": {
+          "host": "localhost:9200",
+          "sinkIndex": "together-sanitized-events",
+          "sinkType": "event",
+          "_idAttributeName": "eventid",
+          "bulkAction": "index"
+        }
+      }
+    }
+  ]
+}

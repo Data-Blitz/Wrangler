@@ -1,0 +1,21 @@
+{
+  "workorder": {
+    "name": "updatePersona",
+    "payload": {
+      "personaName": "Brian",
+      "aboutMeText": [
+        "i am small",
+        "i am big with last no commas",
+        "I am having my first child",
+        "I approve of labor union",
+        "I work in skilled trades",
+        "i live in the mountain states"
+      ]
+    }
+  }
+}
+
+
+
+
+

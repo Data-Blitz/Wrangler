@@ -1,0 +1,113 @@
+{
+  "productions": [
+    {
+      "name": "upLoadPlatformUsers",
+      "source": {
+        "name": "CsvBatchTupleStream",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "filename": "/Users/paul/data/brightpeak/11.09.17-VW-Data/platformUsers/Data.csv",
+          "batchSize": 500,
+          "maxNumberOfOutstandingBatches": 10,
+          "backPressureWaitInMilliseconds": 30
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js",
+          "configuration": {
+          }
+        }
+      },
+      "wranglers": [
+        {
+          "name": "AdjustTimestampFormat",
+          "wranglerImpl": "./wranglers/AdjustTimestampFormat.js",
+          "configuration": {
+            "timestampsToAdjust": [
+              {
+                "sourceAttributeName": "initiallogindate",
+                "format": "ISO",
+                "adjustedAttributeName": "initiallogindate-ISO"
+              },
+              {
+                "sourceAttributeName": "creationdatetime",
+                "format": "ISO",
+                "adjustedAttributeName": "creationdatetime-ISO"
+              },
+              {
+                "sourceAttributeName": "birthdate",
+                "format": "ISO",
+                "adjustedAttributeName": "birthdate-ISO"
+              }
+            ]
+          }
+        },
+        {
+          "name": "AddAge",
+          "wranglerImpl": "./wranglers/AddAge.js",
+          "configuration": {
+            "dobAttributeName": "birthdate-ISO",
+            "ageAttributeName": "age"
+          }
+        },
+        {
+          "name": "AddTimestamp",
+          "wranglerImpl": "./wranglers/AddTimestamp.js",
+          "configuration": {
+            "timestampAttributeName": "timestamp-ISO",
+            "format": "ISO"
+          }
+        },
+        {
+          "name": "MergeUserAttributes",
+          "wranglerImpl": "./wranglers/MergeAttributeContent.js",
+          "configuration": {
+            "referenceIndex": "user-attributes",
+            "referenceType": "attribute",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "attributes"
+          }
+        },
+        {
+          "name": "AddPersona",
+          "wranglerImpl": "./wranglers/AddPersona.js",
+          "configuration": {
+            "host": "localhost:9200",
+            "personaIndex": "persona",
+            "personaType": "reference"
+          }
+        },
+        {
+          "name": "MergeUserEvents",
+          "wranglerImpl": "./wranglers/MergeContent.js",
+          "configuration": {
+            "referenceIndex": "wrangled-events",
+            "referenceType": "event",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "events"
+          }
+        },
+
+        {
+          "name": "MustHave",
+          "wranglerImpl": "./wranglers/MustHave.js",
+          "configuration": {
+            "mustHave":[
+              "attributes"
+            ]
+          }
+        }
+      ],
+
+      "sink": {
+        "name": "FileStream",
+        "sinkImpl": "./sinks/FileSystemSink.js",
+        "configuration": {
+          "fileName": "/Users/paul/clients/bpf-data-blitz-wrangler/WrangledUsersThatHaveAttributesWithEvents.json"
+        }
+      }
+    }
+  ]
+}

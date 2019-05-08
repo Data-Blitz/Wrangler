@@ -1,0 +1,40 @@
+{
+  "personaName": "Paul",
+  "gender": "Male",
+  "Birthdate": "1/1/1990",
+  "state":"Minnesota",
+  "attributes": {
+    "hasStudentLoan": true,
+    "hasCreditCardDebt": true,
+    "hasPersonalDebt": true,
+    "perceivedGoodCredit": true,
+    "hasAutoLoan": true,
+    "hasMortgage": true,
+    "hasEmergSavings": true,
+    "hasRetirementSavings": true,
+    "hasSavingsBigPrchs": true,
+    "hasDisabilityIns": true,
+    "hasHomeRentersIns": true,
+    "hasAutoIns": true,
+    "hasHealthIns": true,
+    "hasLifeIns": true,
+    "hasKids": false,
+    "livesBelowMeans": 3,
+    "hasMoneyGoals": 3,
+    "moneyConfidence": 3,
+    "moneyEmotions": 1,
+    "moneyChildhood": 3,
+    "moneyValues": 3,
+    "couplesMoneyHealth": 1,
+    "FiveS": "secure",
+    "Goal": "Buy a home within the next year; Having professional success. Not having to "work for the man."; Feel secure enough to have kids; Cultivate a strong and loving marriage; never get divorced",
+    "faith": "Christian",
+    "ethnicity": "White",
+    "numberOfKids": "0"
+  }
+}
+
+
+
+
+

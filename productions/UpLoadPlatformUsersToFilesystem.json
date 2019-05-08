@@ -1,0 +1,105 @@
+{
+  "productions": [
+    {
+      "name": "upLoadPlatformUsers",
+      "logger": {
+        "loggerImpl": "./loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          },
+          "filename":"/Users/paul/clients/bpf-data-blitz-wrangler/WranglerLog.json"
+        }
+      },
+
+      "source": {
+        "name": "CsvBatchTupleStream",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "filename": "/Users/paul/data/brightpeak/11.09.17-VW-Data/platformUsers/Data.csv",
+          "batchSize": 400,
+          "maxNumberOfOutstandingBatches": 10,
+          "backPressureWaitInMilliseconds": 1000
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js",
+          "configuration": {
+          }
+        }
+      },
+      "wranglers": [
+        {
+          "name": "AdjustTimestampFormat",
+          "wranglerImpl": "./wranglers/AdjustTimestampFormat.js",
+          "configuration": {
+            "timestampsToAdjust": [
+              {
+                "sourceAttributeName": "initiallogindate",
+                "format": "ISO",
+                "adjustedAttributeName": "initiallogindate-ISO"
+              },
+              {
+                "sourceAttributeName": "creationdatetime",
+                "format": "ISO",
+                "adjustedAttributeName": "creationdatetime-ISO"
+              },
+              {
+                "sourceAttributeName": "birthdate",
+                "format": "ISO",
+                "adjustedAttributeName": "birthdate-ISO"
+              }
+            ]
+          }
+        },
+        {
+          "name": "AddAge",
+          "wranglerImpl": "./wranglers/AddAge.js",
+          "configuration": {
+            "dobAttributeName": "birthdate-ISO",
+            "ageAttributeName": "age"
+          }
+        },
+        {
+          "name": "AddTimestamp",
+          "wranglerImpl": "./wranglers/AddTimestamp.js",
+          "configuration": {
+            "timestampAttributeName": "timestamp-ISO",
+            "format": "ISO"
+          }
+        },
+        {
+          "name": "MergeUserAttributes",
+          "wranglerImpl": "./wranglers/MergeAttributeContent.js",
+          "configuration": {
+            "referenceIndex": "user-attributes",
+            "referenceType": "attribute",
+            "referenceKey": "userid",
+            "referenceSearchKey": "userid.keyword",
+            "mergeKey": "attributes"
+          }
+        },
+        {
+          "name": "AddPersona",
+          "wranglerImpl": "./wranglers/AddPersona.js",
+          "configuration": {
+            "host": "localhost:9200",
+            "personaIndex": "persona",
+            "personaType": "reference"
+          }
+        }
+
+      ],
+
+      "sink":{
+        "name": "JsonLogStreamFileSystemSink",
+        "sinkImpl": "./sinks/JsonLogStreamFileSystemSink.js",
+        "configuration": {
+          "fileName":"/Users/paul/data/together-streams/TogetherUserStream.json"
+        }
+      }
+    }
+  ]
+}

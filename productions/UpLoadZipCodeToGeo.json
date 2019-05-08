@@ -1,0 +1,52 @@
+{
+  "productions": [
+    {
+      "name": "UpLoadZipCodeToGeo",
+      "logger": {
+        "loggerImpl": "/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          },
+          "filename":"/Users/paul/clients/bpf-data-blitz-wrangler/WranglerLog.json"
+        }
+      },
+
+      "source": {
+        "name": "CsvBatchTupleStream",
+        "sourceImpl": "./sources/CsvFileToStream.js",
+        "configuration": {
+          "filename": "/Users/paul/data/publicData/postalCodeData/free-zipcode-database.csv",
+          "batchSize": 1000,
+          "maxNumberOfOutstandingBatches": 10,
+          "backPressureWaitInMilliseconds": 3
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "WranglerTemplate",
+          "wranglerImpl": "./wranglers/WranglerTemplate.js",
+          "configuration": {
+          }
+        }
+      ],
+      "sink": {
+        "name": "ElasticSearch",
+        "sinkImpl": "./sinks/ElasticSearchSink.js",
+        "configuration": {
+          "host": "localhost:9200",
+          "sinkIndex": "postal-codes",
+          "sinkType": "lat-longs",
+          "_idAttributeName": "RecordNumber",
+          "bulkAction": "index"
+        }
+      }
+    }
+  ]
+}

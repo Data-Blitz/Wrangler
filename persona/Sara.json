@@ -1,0 +1,40 @@
+{
+  "personaName": "Sara",
+  "gender": "Female",
+  "Birthdate": "1/1/1990",
+  "state":"Minnesota",
+  "attributes": {
+    "hasStudentLoan": true,
+    "hasCreditCardDebt": false,
+    "hasPersonalDebt": true,
+    "perceivedGoodCredit": true,
+    "hasAutoLoan": true,
+    "hasMortgage": true,
+    "hasEmergSavings": true,
+    "hasRetirementSavings": true,
+    "hasSavingsBigPrchs": true,
+    "hasDisabilityIns": true,
+    "hasHomeRentersIns": true,
+    "hasAutoIns": true,
+    "hasHealthIns": true,
+    "hasLifeIns": true,
+    "hasKids": false,
+    "livesBelowMeans": 1,
+    "hasMoneyGoals": 1,
+    "moneyConfidence": 1,
+    "moneyEmotions": 3,
+    "moneyChildhood": 3,
+    "moneyValues": 2,
+    "couplesMoneyHealth": 1,
+    "FiveS": "stable",
+    "Goal": "Own a house; Be financially prepared/secure enough to start a family; Find the right career path; Keep the joy and fun in life - make memories before settling down.",
+    "faith": "Christian",
+    "ethnicity": "White",
+    "numberOfKids": "0"
+  }
+}
+
+
+
+
+

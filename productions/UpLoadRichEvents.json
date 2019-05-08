@@ -1,0 +1,59 @@
+{
+  "productions": [
+    {
+      "name": "GenerateBpfRichUser",
+      "logger": {
+        "loggerImpl": "/Users/paul/clients/bpf-data-blitz-wrangler/wrangler/loggers/WinstonLogger.js",
+        "configuration": {
+          "options": {
+            "timestamp": true,
+            "depth": true,
+            "prettyPrint": true
+          },
+          "filename":"/Users/paul/clients/bpf-data-blitz-wrangler/WranglerLog.json"
+        }
+      },
+
+
+      "source": {
+        "name": "PlanetClaireBpfUserSource",
+        "sourceImpl": "./sources/PlanetClaireToStream.js",
+        "configuration": {
+          "planetClaireGenerationSchema": "/Users/paul/clients/bpf-data-blitz-wrangler/zzzz.json",
+          "batchSize": 5,
+          "maxNumberOfOutstandingBatches": 5,
+          "backPressureWaitInMilliseconds": 30
+        },
+        "spout": {
+          "name": "TupleStreamSpout",
+          "spoutImpl": "./spouts/ToTupleStream.js"
+        }
+      },
+      "wranglers": [
+        {
+          "name": "PassThrough",
+          "wranglerImpl": "./wranglers/WranglerTemplate.js",
+          "configuration": {
+            "schemas":{
+              "richUser":{
+
+              }
+
+            }
+          }
+        }
+      ],
+      "sink": {
+        "name": "ElasticSearch",
+        "sinkImpl": "./sinks/ElasticSearchSink.js",
+        "configuration": {
+          "host": "localhost:9200",
+          "sinkIndex": "rich-events",
+          "sinkType": "with-users",
+          "_idAttributeName": "eventid",
+          "bulkAction": "index"
+        }
+      }
+    }
+  ]
+}
